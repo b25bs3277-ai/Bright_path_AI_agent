@@ -1,0 +1,57 @@
+BRIGHTPATH COACHING AI - KNOWN ISSUES AND HONEST QA NOTES
+==========================================================
+Read this before showing the demo to an institute owner.
+
+TESTING STATUS
+1. This code was written without being run in a real browser by the author. Syntax and logic were reviewed by reading only.
+   Test on a real phone (Chrome Android) and a laptop before every demo. If you see a console error, send it and ask for a small patch.
+
+VOICE
+2. Speech recognition works in Chrome, Edge and Safari. Firefox does not support it. The app shows a message and the text box still works.
+3. Hindi voice output depends on the device having a hi-IN voice. If none is installed the browser may read Hindi in an English voice.
+4. Browsers require one tap before any spoken reply, so the very first greeting is silent.
+5. Recognition accuracy for Hindi and Hinglish is limited. The rule-based agent matches keywords, it does not understand free language.
+
+CONTENT ACCURACY (important for a paid product)
+6. Questions, explanations, fees, results, toppers, faculty and all numbers are FICTIONAL SAMPLE DATA. Replace with the real institute data.
+7. Chapter lists for classes 1-5 (and some for 6-12) were written from memory of NCERT and may not match the current edition exactly.
+   UPSC and CA entries are overview structures; exam rules, pass marks, GST/income-tax thresholds and Ind AS lists change often.
+   Have a subject teacher verify before real students use it.
+8. Question counts follow your brief but are a SAMPLE bank, not a full test series. Add more rows in the js/qb-*.js files.
+9. Faculty photos are generated cartoon placeholders. Replace assets/faculty/f1.png to f8.png with real photos (with consent).
+
+DATA AND SECURITY
+10. Everything is stored in the browser (localStorage) on each device. Leads, callbacks and doubts captured on a student's phone
+    do NOT reach the owner's phone. A real product needs a backend/database. The CSV export only exports what is on that device.
+11. The owner PIN (default 1234) is client-side only and can be bypassed by anyone with DevTools. It is a demo gate, not security.
+12. Mock checkout takes no payment and stores no card data. A real payment gateway needs a backend.
+13. Parent dashboard attendance, rank history, upcoming tests and fee dates are simulated.
+
+MEDIA AND LICENSES
+14. Background video links (Pexels) may stop working. The app falls back to the generated classroom image. Check the Pexels licence
+    terms before using their video in a commercial product you sell, or replace it with your own footage.
+
+PWA / INSTALL
+15. Service worker and install need HTTPS or localhost. Inside the Colab proxy it may not register. The zip hosted on any HTTPS site
+    (Netlify, GitHub Pages, your server) installs normally. iPhone has no install prompt: use Share > Add to Home Screen.
+16. The service worker is network-first, so the app works offline only after it has loaded online once.
+17. App icons are generated placeholders. Replace assets/icons/* with the institute logo for each customer.
+
+WHITE-LABEL
+18. Live settings change name, logo text, tagline, colours, contact details and fees. The PWA manifest name and icons, the faculty
+    list, the toppers and programme names are not editable in the panel yet; edit js/agent.js and manifest.json for those.
+19. The agent KB text says BrightPath in some places; replies are rewritten to the logo text at display time, but the spoken
+    source strings in the code still say BrightPath.
+
+PERFORMANCE
+20. Total size is well under the 1.5 to 2 MB target (mostly text). Glass blur effects are heavy on very old phones; low-memory or
+    data-saver devices automatically get a lighter look.
+21. Skeleton loaders add a deliberate 150 ms delay when switching tabs.
+
+ACCESSIBILITY
+22. Keyboard navigation, focus outlines, ARIA labels, live chat region and reduced-motion support were added, but no screen reader
+    audit was done. Charts are visual only; numbers are also shown as text next to them.
+
+HOW TO REPLAY THE WELCOME SCREEN AND TOUR
+   Open the page with the browser DevTools > Application > Local Storage and delete bp_welcomed and bp_toured, then refresh.
+   Or use Profile > Replay app tour. Add ?nowelcome to the URL to skip the welcome screen during development.

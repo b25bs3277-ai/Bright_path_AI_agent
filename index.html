@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0a1330">
+<title>BrightPath Coaching AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="assets/icons/icon-192.png">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+</head><body>
+<div id="bg"><img id="bgimg" src="assets/classroom.jpg" alt=""><video id="bgvid" muted loop autoplay playsinline preload="auto"></video><div class="ov"></div></div>
+<div id="app"></div>
+<noscript>Please enable JavaScript.</noscript>
+<script>
+window.BP = window.BP || {};
+BP.config = { videos: ["https://videos.pexels.com/video-files/5198164/5198164-hd_1920_1080_25fps.mp4", "https://videos.pexels.com/video-files/3209828/3209828-hd_1920_1080_25fps.mp4"] };
+/* ---- module loader: loads in order, silently skips modules that do not exist yet ---- */
+(function () {
+  var CSS = ['css/base.css', 'css/polish.css'];
+  var JS = ['js/core.js', 'js/voice.js', 'js/agent.js', 'js/tests.js', 'js/data-syllabus.js', 'js/courses.js', 'js/extras.js', 'js/extras-doubt.js', 'js/extras-owner.js', 'js/polish.js'];
+  var v = Date.now();
+  function loadCss(h) { return new Promise(function (r) { var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = h + '?v=' + v; l.onload = l.onerror = function () { r(); }; document.head.appendChild(l); }); }
+  function loadJs(s) { return new Promise(function (r) { var e = document.createElement('script'); e.src = s + '?v=' + v; e.onload = function () { r(); }; e.onerror = function () { if (e.parentNode) e.parentNode.removeChild(e); r(); }; document.body.appendChild(e); }); }
+  Promise.all(CSS.map(loadCss)).then(function () {
+    var p = Promise.resolve();
+    JS.forEach(function (s) { p = p.then(function () { return loadJs(s); }); });
+    return p;
+  }).then(function () {
+    if (window.BP && BP.boot) BP.boot();
+    else document.body.insertAdjacentHTML('beforeend', '<p style="padding:20px;position:relative;color:#fff">BrightPath could not load js/core.js</p>');
+  });
+})();
+</script>
+</body></html>
